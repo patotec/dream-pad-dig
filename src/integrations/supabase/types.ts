@@ -14,7 +14,98 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      properties: {
+        Row: {
+          address: string
+          agent_name: string
+          agent_title: string
+          baths: number
+          beds: number
+          city: string
+          created_at: string
+          description: string
+          featured: boolean
+          id: string
+          image_key: string
+          price: number
+          property_type: string
+          sqft: number
+          state: string
+          status: string
+          title: string
+          zip: string
+        }
+        Insert: {
+          address: string
+          agent_name?: string
+          agent_title?: string
+          baths?: number
+          beds?: number
+          city: string
+          created_at?: string
+          description?: string
+          featured?: boolean
+          id?: string
+          image_key?: string
+          price: number
+          property_type?: string
+          sqft?: number
+          state: string
+          status?: string
+          title: string
+          zip?: string
+        }
+        Update: {
+          address?: string
+          agent_name?: string
+          agent_title?: string
+          baths?: number
+          beds?: number
+          city?: string
+          created_at?: string
+          description?: string
+          featured?: boolean
+          id?: string
+          image_key?: string
+          price?: number
+          property_type?: string
+          sqft?: number
+          state?: string
+          status?: string
+          title?: string
+          zip?: string
+        }
+        Relationships: []
+      }
+      saved_homes: {
+        Row: {
+          created_at: string
+          id: string
+          property_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          property_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          property_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "saved_homes_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
