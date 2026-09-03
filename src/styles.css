@@ -19,6 +19,11 @@
  */
 
 @theme inline {
+  --color-brand: var(--brand);
+  --color-accent-cyan: var(--accent-cyan);
+  --color-ink: var(--ink);
+  --font-display: var(--font-display-family);
+  --font-body: var(--font-body-family);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -62,8 +67,16 @@
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
+  --radius: 1rem;
+  --font-display-family: "Space Grotesk", sans-serif;
+  --font-body-family: "Inter", sans-serif;
+  /* #0ea5e9 */
+  --brand: oklch(0.685 0.152 237.3);
+  /* #06b6d4 */
+  --accent-cyan: oklch(0.715 0.135 214.1);
+  /* #0b1220 */
+  --ink: oklch(0.181 0.028 265.5);
+  --background: oklch(0.98 0.006 247.9);
   --foreground: oklch(0.129 0.042 264.695);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
@@ -139,6 +152,44 @@
 
   body {
     background-color: var(--color-background);
-    color: var(--color-foreground);
+    color: var(--ink);
+    font-family: var(--font-body-family);
   }
 }
+
+@keyframes drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-40px, 20px, 0);
+  }
+}
+
+@keyframes drift2 {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(30px, -25px, 0);
+  }
+}
+
+@utility anim-drift {
+  animation: drift 14s ease-in-out infinite alternate;
+}
+
+@utility anim-drift2 {
+  animation: drift2 18s ease-in-out infinite alternate;
+}
+
+@utility surface-glass {
+  border: 1px solid rgb(255 255 255 / 0.6);
+  background: rgb(255 255 255 / 0.55);
+  backdrop-filter: blur(24px);
+}
+
+@utility gradient-brand {
+  background-image: linear-gradient(to right, var(--brand), var(--accent-cyan));
+}
+
